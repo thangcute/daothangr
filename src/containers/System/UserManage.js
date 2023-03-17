@@ -4,11 +4,13 @@ import { connect } from "react-redux";
 import "./UserManage.scss";
 import { getAllUsers } from "../../services/userService";
 import { Fragment } from "react";
+import ModalUser from "./ModalUser";
 class UserManage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       arrUsers: [],
+      isOpenModalUser: false,
     };
   }
 
@@ -27,12 +29,45 @@ class UserManage extends Component {
     }
   }
 
+  handleAddNewUser = () => {
+    this.setState({
+      isOpenModalUser: true,
+    });
+  };
+
+  toggleUserModal = () => {
+    this.setState({
+      isOpenModalUser: !this.state.isOpenModalUser,
+    });
+  };
+  /** Life cycle
+   * Run component
+   * 1. Run construct -> init state
+   * 2. Did mount (set state)
+   * 3. render
+   *
+   */
+
   render() {
     console.log("check render: ", this.state);
     let arrUsers = this.state.arrUsers;
+    //properties; nested
     return (
       <div className="users-container">
+        <ModalUser
+          isOpen={this.state.isOpenModalUser}
+          toggleFromParent={this.toggleUserModal}
+          test={"abc"}
+        />
         <div className="title text-center">Manage users with Thắng</div>
+        <div className="mx-1">
+          <button
+            className="btn btn-primary px-3"
+            onClick={() => this.handleAddNewUser()}
+          >
+            <i className="fas fa-plus"></i> Add new users
+          </button>
+        </div>
         <div className="users-table mt-3 mx-1">
           <table id="customers">
             <tr>
@@ -45,7 +80,6 @@ class UserManage extends Component {
 
             {arrUsers &&
               arrUsers.map((item, index) => {
-                console.log("thang check map", item, index);
                 return (
                   <tr>
                     <td>{item.email}</td>
