@@ -1,5 +1,5 @@
 .home-header-container {
-  height: 60px;
+  height: 90px;
   width: 100%;
 
   .home-header-content {
@@ -10,26 +10,32 @@
 
     .left-content {
       width: 25%;
-      border: 1px solid green;
       display: flex;
       align-items: center;
+      justify-content: center;
 
       .header-logo {
         background: url("../../assets/bookingcare-2020.svg") center center
           no-repeat;
         height: 100%;
-        width: 100%;
+        width: 50%;
         cursor: pointer;
-      }
-      i {
-        font-size: 25px;
-        color: grey;
-        cursor: pointer;
+        background-size: 70%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i {
+          font-size: 25px;
+          color: grey;
+          cursor: pointer;
+          position: absolute;
+          left: 0px;
+        }
       }
     }
     .center-content {
       width: 50%;
-      border: 1px solid orange;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -42,12 +48,134 @@
     }
     .right-content {
       width: 25%;
-      border: 1px solid black;
 
+      display: flex;
+      justify-content: flex-end;
       .support {
         display: flex;
         justify-content: center;
         align-items: center;
+        text-align: center;
+        grid-gap: 20px;
+        i {
+          padding: 50px;
+          font-size: 18px;
+          cursor: pointer;
+          color: #49bce2;
+        }
+        .language-en {
+          cursor: pointer;
+          &.active {
+            color: blue;
+          }
+        }
+        .language-vi {
+          cursor: pointer;
+          &.active {
+            color: orange;
+          }
+        }
+      }
+    }
+  }
+}
+.home-header-banner {
+  background-image: url("../../assets/bookingcare-background.jpg");
+
+  background-size: cover;
+  height: 850px;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  .content-up {
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0.25),
+      rgba(255, 255, 255, 0.1)
+    );
+    padding-top: 150px;
+    height: 80%;
+    .title1 {
+      text-align: center;
+      font-size: 30px;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 1px #333;
+      margin-bottom: 5px;
+      margin-top: 30px;
+      color: white;
+    }
+    .title2 {
+      text-align: center;
+      font-size: 30px;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 1px #333;
+      color: white;
+      margin-bottom: 15px;
+    }
+    .search {
+      width: fit-content;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      padding: 10px;
+      width: fit-content;
+      border-radius: 25px;
+      background-color: #f7d800;
+      i {
+        margin: 10px;
+      }
+      input {
+        height: 30px;
+        width: 360px;
+        background: transparent;
+        border: none;
+        outline: none;
+      }
+    }
+  }
+  .content-down {
+    height: 20%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background-image: linear-gradient(
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 1)
+    );
+    .options {
+      text-align: center;
+      display: flex;
+      grid-gap: 50px;
+
+      .option-child {
+        width: 100px;
+        height: 150px;
+        text-align: center;
+
+        .icon-child {
+          background: white;
+          width: 60px;
+          height: 60px;
+          padding: 10px;
+          border-radius: 50%;
+          margin: 0 auto;
+          text-shadow: 1px 1px 1px #333;
+          i {
+            font-size: 30px;
+            color: #49bce2;
+          }
+        }
+        .text-child {
+          font-size: 17px;
+          font-weight: 500;
+          cursor: pointer;
+
+          &:hover {
+            color: #49bce2;
+          }
+        }
       }
     }
   }
