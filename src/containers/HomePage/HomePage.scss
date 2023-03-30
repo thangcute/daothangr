@@ -27,9 +27,17 @@
     background: #ececec !important;
   }
 }
+.slick-disabled {
+  display: none !important;
+}
+
+.share {
+  width: 100%;
+  background: #f5f5f5;
+}
 
 .section-share {
-  width: 65%;
+  width: 70%;
   margin: 0 auto;
 
   &.section-specialty {
@@ -40,7 +48,7 @@
       height: 150px;
       background-position: center center;
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: cover;
       background-image: url("../../assets/specialty/coxuongkhop.jpg");
     }
   }
@@ -109,7 +117,7 @@
       padding: 0 5px;
       .customize-border {
         padding: 20px;
-        border: 1px solid grey;
+        border: 1px solid rgb(226, 221, 221);
       }
       .outer-bg {
         display: flex;
@@ -126,7 +134,7 @@
     height: inherit;
     margin: 0 50px;
     display: flex;
-    padding: 70px 20px;
+    padding: 50px 20px;
 
     flex-direction: column;
     .section-header {
