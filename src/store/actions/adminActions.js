@@ -6,6 +6,7 @@ import {
   getAllUsers,
   deleteUserService,
   editUserService,
+  getTopDoctorHomeService,
 } from "../../services/userService";
 
 // export const fetchGenderStart = () => ({
@@ -197,3 +198,26 @@ export const updateUserSuccess = () => ({
 export const updateUserFailed = () => ({
   type: actionTypes.EDIT_USER_FAIDED,
 });
+
+export const fetchTopDoctor = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getTopDoctorHomeService("10");
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
+          dataDoctors: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_TOP_DOCTOR_FAILDED,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: actionTypes.FETCH_TOP_DOCTOR_FAILDED,
+      });
+    }
+  };
+};
