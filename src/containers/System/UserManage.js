@@ -163,7 +163,7 @@ class UserManage extends Component {
                 arrUsers.map((item, index) => {
                   return (
                     <tr>
-                      <td>{index}</td>
+                      <td key={index}>{index}</td>
                       <td>{item.email}</td>
                       <td>{item.firstName}</td>
                       <td>{item.lastName}</td>

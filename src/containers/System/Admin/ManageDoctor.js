@@ -11,12 +11,7 @@ import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import "./ManageDoctor.scss";
 import Select from "react-select";
-
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
+import { LANGUAGES } from "../../../utils";
 
 // Register plugins if required
 // MdEditor.use(YOUR_PLUGINS_HERE);
@@ -32,24 +27,75 @@ class ManageDoctor extends Component {
     this.state = {
       contentMarkdown: "",
       contentHTML: "",
-      selectedOption: "",
+      selectedDoctor: "",
+      description: "",
+      listDoctors: [],
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.fetchAllDoctors();
+  }
+  buildDataInputSelect = (inputData) => {
+    let result = [];
+    let language = this.props.language;
+    if (inputData && inputData.length > 0) {
+      inputData.map((item, index) => {
+        let object = {};
+        let labelVi = `${item.lastName} ${item.firstName}`;
+        let labelEn = `${item.firstName} ${item.lastName}`;
+        object.label = language === LANGUAGES.VI ? labelVi : labelEn;
+        object.value = item.id;
+        result.push(object);
+      });
+    }
+    return result;
+  };
 
-  componentDidUpdate(prevProps, prevState, snapshot) {}
-
-  handleEditorChange({ html, text }) {
-    console.log("handleEditorChange", html, text);
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.allDoctors !== this.props.allDoctors) {
+      let dataSelect = this.buildDataInputSelect(this.props.allDoctors);
+      this.setState({
+        listDoctors: dataSelect,
+      });
+    }
+    if (prevProps.language !== this.props.language) {
+      let dataSelect = this.buildDataInputSelect(this.props.allDoctors);
+      this.setState({
+        listDoctors: dataSelect,
+      });
+    }
   }
 
-  handleSaveContentMarkdown = () => {};
+  handleEditorChange = ({ html, text }) => {
+    this.setState({
+      contentMarkdown: text,
+      contentHTML: html,
+    });
+  };
 
-  handleChange = (selectedOption) => {
-    this.setState({ selectedOption }, () =>
-      console.log(`Option selected:`, this.state.selectedOption)
-    );
+  handleSaveContentMarkdown = () => {
+    this.props.saveDetailDoctor({
+      contentHTML: this.state.contentHTML,
+      contentMarkdown: this.state.contentMarkdown,
+      description: this.state.description,
+      doctorId: this.state.selectedDoctor.value,
+    });
+    this.setState({
+      contentMarkdown: "",
+      contentHTML: "",
+      selectedDoctor: "",
+      description: "",
+    });
+  };
+
+  handleChange = (selectedDoctor) => {
+    this.setState({ selectedDoctor });
+  };
+  handleOnChangeDesc = (event) => {
+    this.setState({
+      description: event.target.value,
+    });
   };
 
   render() {
@@ -60,9 +106,9 @@ class ManageDoctor extends Component {
           <div className="content-left form-group">
             <label htmlFor="">Chọn bác sĩ</label>
             <Select
-              value={this.state.selectedOption}
+              value={this.state.selectedDoctor}
               onChange={this.handleChange}
-              options={options}
+              options={this.state.listDoctors}
             />
           </div>
           <div className="content-right">
@@ -73,6 +119,8 @@ class ManageDoctor extends Component {
               id=""
               cols="30"
               rows="5"
+              onChange={(event) => this.handleOnChangeDesc(event)}
+              value={this.state.description}
             ></textarea>
           </div>
         </div>
@@ -96,14 +144,16 @@ class ManageDoctor extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // listUsers: state.admin.users,
+    allDoctors: state.admin.allDoctors,
+    language: state.app.language,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     // fetchUserRedux: () => dispatch(actions.fetchAllUserStart()),
-    // deleteAUserRedux: (id) => dispatch(actions.deleteAUser(id)),
+    fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
+    saveDetailDoctor: (data) => dispatch(actions.saveDetailDoctor(data)),
   };
 };
 

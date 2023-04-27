@@ -4,8 +4,10 @@ import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
+import { useHistory } from "react-router-dom";
 
 class OutStandingDoctor extends Component {
+  history = useHistory();
   constructor(props) {
     super(props);
     this.state = {
@@ -22,6 +24,10 @@ class OutStandingDoctor extends Component {
       });
     }
   }
+  handleviewdetaildoctor = (doctor) => {
+    console.log(doctor);
+    history.push(`/users/:${doctor.id}`);
+  };
   render() {
     let allDoctors = this.state.arrDoctors;
     let language = this.props.language;
@@ -52,7 +58,11 @@ class OutStandingDoctor extends Component {
                     let nameVi = `${item.positionData.valueVi}, ${item.firstName} ${item.lastName}`;
                     let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
                     return (
-                      <div className="img-customize" key={index}>
+                      <div
+                        className="img-customize"
+                        key={index}
+                        onClick={() => this.handleviewdetaildoctor(item)}
+                      >
                         <div className="customize-border">
                           <div className="outer-bg">
                             <div
