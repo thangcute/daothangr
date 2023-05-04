@@ -17,9 +17,9 @@ import "react-markdown-editor-lite/lib/index.css";
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 // Finish!
-function handleEditorChange({ html, text }) {
-  console.log("handleEditorChange", html, text);
-}
+// function handleEditorChange({ html, text }) {
+//   console.log("handleEditorChange", html, text);
+// }
 
 class TableManageUser extends Component {
   constructor(props) {
@@ -53,11 +53,11 @@ class TableManageUser extends Component {
     let arrUsers = this.state.usersRedux;
     return (
       <React.Fragment>
-        <MdEditor
+        {/* <MdEditor
           style={{ height: "500px" }}
           renderHTML={(text) => mdParser.render(text)}
           onChange={handleEditorChange}
-        />
+        /> */}
         <table id="TableManageUser">
           <tbody>
             <tr>

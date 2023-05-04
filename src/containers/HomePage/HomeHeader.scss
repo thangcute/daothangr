@@ -17,6 +17,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      i {
+        font-size: 25px;
+        color: grey;
+        cursor: pointer;
+      }
 
       .header-logo {
         background: url("../../assets/bookingcare-2020.svg") center center
@@ -29,13 +34,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        i {
-          font-size: 25px;
-          color: grey;
-          cursor: pointer;
-          position: absolute;
-          left: 0;
-        }
       }
     }
     .center-content {
