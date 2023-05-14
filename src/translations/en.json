@@ -63,5 +63,28 @@
     "Choose-doctor": "Select doctor",
     "choose-date": "Select date",
     "save": "Save"
+  },
+  "patient": {
+    "detail-doctor": {
+      "schedule": "Schedule",
+      "no-schedule": "No appointments during this time!",
+      "choose": "Choose",
+      "book-free": "and book (FREE)"
+    }
+  },
+  "admin": {
+    "manage-doctor": {
+      "title": "Create more doctor information",
+      "select-doctor": "Choose doctor",
+      "intro": "Introduction information",
+      "save": "Save",
+      "create": "Create",
+      "price": "Price",
+      "payment": "Payment",
+      "province": "Province",
+      "nameClinic": "Clinic's name",
+      "addressClinic": "Clinic's address",
+      "note": "Note"
+    }
   }
 }
