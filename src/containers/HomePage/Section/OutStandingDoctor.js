@@ -26,7 +26,6 @@ class OutStandingDoctor extends Component {
     }
   }
   handleviewdetaildoctor = (doctor) => {
-    console.log(doctor);
     this.props.history.push(`/detail-doctor/${doctor.id}`);
   };
   render() {
@@ -76,7 +75,6 @@ class OutStandingDoctor extends Component {
                             <div>
                               {language === LANGUAGES.VI ? nameVi : nameEn}
                             </div>
-                            <div>Cơ Xương Khớp</div>
                           </div>
                         </div>
                       </div>

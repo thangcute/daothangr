@@ -19,7 +19,7 @@ class HomePage extends Component {
       infinite: false,
       speed: 500,
       slidesToShow: 4,
-      slidesToScroll: 1,
+      slidesToScroll: 3,
       // afterChange: this.handleAfterChange,
       // nextArrow: <SampleNextArrow />,
       // prevArrow: <SamplePrevArrow />,
