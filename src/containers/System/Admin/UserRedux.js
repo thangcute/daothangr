@@ -40,48 +40,7 @@ class UserRedux extends Component {
     this.props.getGenderStart();
     this.props.getPositionStart();
     this.props.getRoleStart();
-    // this.getAllCodeGender();
-    // this.getAllCodePosition();
-    // this.getAllCodeRole();
   }
-  // getAllCodeGender = async () => {
-  //   try {
-  //     let res = await getAllCodeService("gender");
-
-  //     if (res && res.errCode === 0) {
-  //       this.setState({
-  //         genderArr: res.data,
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // getAllCodePosition = async () => {
-  //   try {
-  //     let res = await getAllCodeService("position");
-
-  //     if (res && res.errCode === 0) {
-  //       this.setState({
-  //         positionArr: res.data,
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // getAllCodeRole = async () => {
-  //   try {
-  //     let res = await getAllCodeService("Role");
-  //     if (res && res.errCode === 0) {
-  //       this.setState({
-  //         roleArr: res.data,
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.genderRedux !== this.props.genderRedux) {
@@ -146,7 +105,6 @@ class UserRedux extends Component {
     this.setState({
       isOpen: true,
     });
-    console.log(this.state.isOpen);
   };
 
   handleSaveUser = () => {

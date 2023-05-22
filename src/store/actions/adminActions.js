@@ -9,6 +9,8 @@ import {
   getTopDoctorHomeService,
   getAllDoctors,
   saveDetailDoctorService,
+  getAllSpecialtys,
+  editSpecialtyService,
 } from "../../services/userService";
 
 // export const fetchGenderStart = () => ({
@@ -300,18 +302,22 @@ export const getRequiredDoctorInfo = () => {
       let resPrice = await getAllCodeService("PRICE");
       let resPayment = await getAllCodeService("PAYMENT");
       let resProvince = await getAllCodeService("PROVINCE");
+      let resSpecialty = await getAllSpecialtys("ALL");
       if (
         resPrice &&
         resPrice.errCode === 0 &&
         resPayment &&
         resPayment.errCode === 0 &&
         resProvince &&
-        resProvince.errCode === 0
+        resProvince.errCode === 0 &&
+        resSpecialty &&
+        resSpecialty.specialties.errCode === 0
       ) {
         let data = {
           resPrice: resPrice.data,
           resPayment: resPayment.data,
           resProvince: resProvince.data,
+          resSpecialty: resSpecialty.specialties.data,
         };
         dispatch(fetchRequiredDoctorInfoSuccess(data));
       } else {
@@ -332,3 +338,52 @@ export const fetchRequiredDoctorInfoSuccess = (allRequiredData) => ({
 export const fetchRequiredDoctorInfoFailed = () => ({
   type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAILDED,
 });
+
+export const fetchAllSpecialty = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllSpecialtys("ALL");
+      console.log("check res: ", res.specialties.data);
+      if (res && res.specialties.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALL_SPECIALTY_SUCCESS,
+          dataSP: res.specialties.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALL_SPECIALTY_FAILDED,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: actionTypes.FETCH_ALL_SPECIALTY_FAILDED,
+      });
+    }
+  };
+};
+
+export const UpdateSpecialty = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await editSpecialtyService(data);
+      if (res && res.errCode === 0) {
+        toast.success("save info specialty success!");
+        dispatch({
+          type: actionTypes.EDIT_SPECIALTY_SUCCESS,
+        });
+      } else {
+        toast.error("save info specialty error!");
+        dispatch({
+          type: actionTypes.EDIT_SPECIALTY_FAIDED,
+        });
+      }
+    } catch (error) {
+      toast.error("save info specialty error!");
+      console.log(error);
+      dispatch({
+        type: actionTypes.EDIT_SPECIALTY_FAIDED,
+      });
+    }
+  };
+};

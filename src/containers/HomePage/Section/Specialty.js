@@ -2,74 +2,62 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./Specialty.scss";
 import { FormattedMessage } from "react-intl";
+import { getAllSpecialtys } from "../../../services/userService";
 import Slider from "react-slick";
-
-// function SampleNextArrow(props) {
-//   const { className, style, onClick } = props;
-//   return (
-//     <div
-//       className={className}
-//       style={{ ...style, display: "block", background: "red" }}
-//       onClick={onClick}
-//     />
-//   );
-// }
-
-// function SamplePrevArrow(props) {
-//   const { className, style, onClick } = props;
-//   return (
-//     <div
-//       className={className}
-//       style={{ ...style, display: "block", background: "green" }}
-//       onClick={onClick}
-//     />
-//   );
-// }
+import { withRouter } from "react-router";
 
 class Specialty extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataSpecialty: [],
+    };
+  }
+  async componentDidMount() {
+    let res = await getAllSpecialtys("ALL");
+    if (res && res.specialties.errCode === 0) {
+      this.setState({
+        dataSpecialty: res.specialties.data,
+      });
+    }
+  }
+  handleviewdetailSpecialty = (item) => {
+    this.props.history.push(`/detail-specialty/${item.id}`);
+  };
   render() {
+    let { dataSpecialty } = this.state;
+
     return (
       <div className="share">
         <div className="section-share section-specialty">
           <div className="section-container">
             <div className="section-header">
-              <span>Chuyên Khoa Phổ Biến</span>
-              <button>Xem Thêm</button>
+              <span>
+                <FormattedMessage id="homepage.specialty-popular" />
+              </span>
+              <button>
+                <FormattedMessage id="homepage.more-infor" />
+              </button>
             </div>
             <div className="section-body">
               <Slider {...this.props.settings}>
-                <div className="img-customize">
-                  <div className="bg-image"></div>
-                  <div className="text-img">Cơ xương khớp 1</div>
-                </div>
-                <div className="img-customize">
-                  <div className="bg-image"></div>
-                  <div className="text-img">Cơ xương khớp 2</div>
-                </div>
-                <div className="img-customize">
-                  <div className="bg-image"></div>
-                  <div className="text-img">Cơ xương khớp 3</div>
-                </div>
-                <div className="img-customize">
-                  <div className="bg-image"></div>
-                  <div className="text-img">Cơ xương khớp 4</div>
-                </div>
-                <div className="img-customize">
-                  <div className="bg-image"></div>
-                  <div className="text-img">Cơ xương khớp 5</div>
-                </div>
-                <div className="img-customize">
-                  <div className="bg-image"></div>
-                  <div className="text-img">Cơ xương khớp 6</div>
-                </div>
-                <div className="img-customize">
-                  <div className="bg-image"></div>
-                  <div className="text-img">Cơ xương khớp 7</div>
-                </div>
-                <div className="img-customize">
-                  <div className="bg-image"></div>
-                  <div className="text-img">Cơ xương khớp 8</div>
-                </div>
+                {dataSpecialty &&
+                  dataSpecialty.length > 0 &&
+                  dataSpecialty.map((item, index) => {
+                    return (
+                      <div
+                        className="img-customize"
+                        key={index}
+                        onClick={() => this.handleviewdetailSpecialty(item)}
+                      >
+                        <div
+                          className="bg-image"
+                          style={{ backgroundImage: `url(${item.image})` }}
+                        ></div>
+                        <div className="text-name">{item.name}</div>
+                      </div>
+                    );
+                  })}
               </Slider>
             </div>
           </div>
@@ -92,4 +80,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Specialty)
+);

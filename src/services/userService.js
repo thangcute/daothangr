@@ -9,7 +9,6 @@ const getAllUsers = (inputId) => {
 };
 
 const createNewUserService = (data) => {
-  console.log(data);
   return axios.post("/api/create-new-user", data);
 };
 
@@ -58,6 +57,19 @@ const postPatientBookAppointment = (data) => {
 const postVerifyBookAppointment = (data) => {
   return axios.post("/api/verify-book-appointment", data);
 };
+const createNewSpecialty = (data) => {
+  return axios.post("/api/create-new-specialty", data);
+};
+const getAllSpecialtys = (inputId) => {
+  //template string
+  return axios.get(`/api/get-all-specialties?id=${inputId}`);
+};
+const editSpecialtyService = (data) => {
+  return axios.put("/api/edit-specialty", data);
+};
+const deleteSpecialtyService = (id) => {
+  return axios.delete("/api/delete-specialty", { data: { id: id } });
+};
 
 export {
   handleLoginApi,
@@ -76,4 +88,8 @@ export {
   getProfileDoctorById,
   postPatientBookAppointment,
   postVerifyBookAppointment,
+  createNewSpecialty,
+  getAllSpecialtys,
+  editSpecialtyService,
+  deleteSpecialtyService,
 };
