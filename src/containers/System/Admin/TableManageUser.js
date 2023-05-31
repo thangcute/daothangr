@@ -9,6 +9,7 @@ import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 // import style manually
 import "react-markdown-editor-lite/lib/index.css";
+import $ from "jquery";
 
 // Register plugins if required
 // MdEditor.use(YOUR_PLUGINS_HERE);
@@ -26,6 +27,7 @@ class TableManageUser extends Component {
     super(props);
     this.state = {
       usersRedux: [],
+      dataPhanTrang: [],
     };
   }
 
@@ -35,8 +37,14 @@ class TableManageUser extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.listUsers !== this.props.listUsers) {
+      let tmp = [];
+      for (var k = 0; k < 5; k++) {
+        tmp.push(this.props.listUsers[k]);
+      }
       this.setState({
         usersRedux: this.props.listUsers,
+
+        dataPhanTrang: tmp,
       });
     }
   }
@@ -48,9 +56,24 @@ class TableManageUser extends Component {
   handleEditUser = (user) => {
     this.props.handleEditUserFromParentKey(user);
   };
+  handleClickNum = (j, e) => {
+    let tmpTheoTrang = [];
+    var n = j * 5;
+    var t = j * 5 - 5;
+    for (var k = t; k < n; k++) {
+      if (this.state.usersRedux[k]) {
+        tmpTheoTrang.push(this.state.usersRedux[k]);
+      } else break;
+    }
+    this.setState({
+      dataPhanTrang: tmpTheoTrang,
+    });
+  };
 
   render() {
-    let arrUsers = this.state.usersRedux;
+    let arrUsers = this.state.dataPhanTrang;
+    let num = Math.ceil(this.state.usersRedux.length / 5);
+
     return (
       <React.Fragment>
         {/* <MdEditor
@@ -95,6 +118,21 @@ class TableManageUser extends Component {
               })}
           </tbody>
         </table>
+        <div className="number">
+          <div className="phantrang">
+            {(() => {
+              let a = [];
+              for (let j = 0; j < num; j++) {
+                a.push(
+                  <a key={j} onClick={() => this.handleClickNum(j + 1, this)}>
+                    {j + 1}
+                  </a>
+                );
+              }
+              return a;
+            })()}
+          </div>
+        </div>
       </React.Fragment>
     );
   }

@@ -25,3 +25,19 @@
   background-color: #04aa6d;
   color: white;
 }
+.number {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  .phantrang {
+    display: inline-block;
+    background-color: #ccc;
+    padding: 3px 10px;
+    a {
+      border-left: 0.5px solid grey;
+      border-right: 0.5px solid grey;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+  }
+}

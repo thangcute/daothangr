@@ -27,6 +27,7 @@ class TableManageClinic extends Component {
     super(props);
     this.state = {
       clinicRedux: [],
+      dataPhanTrang: [],
     };
   }
 
@@ -36,8 +37,13 @@ class TableManageClinic extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.listClinic !== this.props.listClinic) {
+      let tmp = [];
+      for (var k = 0; k < 5; k++) {
+        tmp.push(this.props.listClinic[k]);
+      }
       this.setState({
         clinicRedux: this.props.listClinic,
+        dataPhanTrang: tmp,
       });
     }
   }
@@ -62,8 +68,22 @@ class TableManageClinic extends Component {
       toast.error("Xóa thất bại!");
     }
   };
+  handleClickNum = (j, e) => {
+    let tmpTheoTrang = [];
+    var n = j * 5;
+    var t = j * 5 - 5;
+    for (var k = t; k < n; k++) {
+      if (this.state.clinicRedux[k]) {
+        tmpTheoTrang.push(this.state.clinicRedux[k]);
+      } else break;
+    }
+    this.setState({
+      dataPhanTrang: tmpTheoTrang,
+    });
+  };
   render() {
-    let arrClinic = this.state.clinicRedux;
+    let arrClinic = this.state.dataPhanTrang;
+    let num = Math.ceil(this.state.clinicRedux.length / 5);
     return (
       <React.Fragment>
         {/* <MdEditor
@@ -110,6 +130,21 @@ class TableManageClinic extends Component {
               })}
           </tbody>
         </table>
+        <div className="number">
+          <div className="phantrang">
+            {(() => {
+              let a = [];
+              for (let j = 0; j < num; j++) {
+                a.push(
+                  <a key={j} onClick={() => this.handleClickNum(j + 1, this)}>
+                    {j + 1}
+                  </a>
+                );
+              }
+              return a;
+            })()}
+          </div>
+        </div>
       </React.Fragment>
     );
   }

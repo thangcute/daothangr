@@ -131,8 +131,7 @@ class SearchClinic extends Component {
             </div>
             <div className="data">
               <div className="row">
-                {dataClinic &&
-                  dataClinic.length > 0 &&
+                {dataClinic && dataClinic.length > 0 ? (
                   dataClinic.map((item, index) => {
                     return (
                       <div className="col-4" key={index}>
@@ -148,7 +147,12 @@ class SearchClinic extends Component {
                         </div>
                       </div>
                     );
-                  })}
+                  })
+                ) : (
+                  <div className="col-12" style={{ textAlign: "center" }}>
+                    No data
+                  </div>
+                )}
               </div>
             </div>
           </div>

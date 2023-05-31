@@ -27,6 +27,7 @@ class TableManageSpecialty extends Component {
     super(props);
     this.state = {
       specialtyRedux: [],
+      dataPhanTrang: [],
     };
   }
 
@@ -36,8 +37,13 @@ class TableManageSpecialty extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.listSpecialty !== this.props.listSpecialty) {
+      let tmp = [];
+      for (var k = 0; k < 5; k++) {
+        tmp.push(this.props.listSpecialty[k]);
+      }
       this.setState({
         specialtyRedux: this.props.listSpecialty,
+        dataPhanTrang: tmp,
       });
     }
   }
@@ -62,8 +68,22 @@ class TableManageSpecialty extends Component {
       toast.error("Xóa thất bại!");
     }
   };
+  handleClickNum = (j, e) => {
+    let tmpTheoTrang = [];
+    var n = j * 5;
+    var t = j * 5 - 5;
+    for (var k = t; k < n; k++) {
+      if (this.state.specialtyRedux[k]) {
+        tmpTheoTrang.push(this.state.specialtyRedux[k]);
+      } else break;
+    }
+    this.setState({
+      dataPhanTrang: tmpTheoTrang,
+    });
+  };
   render() {
-    let arrSpecialty = this.state.specialtyRedux;
+    let arrSpecialty = this.state.dataPhanTrang;
+    let num = Math.ceil(this.state.specialtyRedux.length / 5);
     return (
       <React.Fragment>
         {/* <MdEditor
@@ -110,6 +130,21 @@ class TableManageSpecialty extends Component {
               })}
           </tbody>
         </table>
+        <div className="number">
+          <div className="phantrang">
+            {(() => {
+              let a = [];
+              for (let j = 0; j < num; j++) {
+                a.push(
+                  <a key={j} onClick={() => this.handleClickNum(j + 1, this)}>
+                    {j + 1}
+                  </a>
+                );
+              }
+              return a;
+            })()}
+          </div>
+        </div>
       </React.Fragment>
     );
   }
