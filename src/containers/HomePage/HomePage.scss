@@ -60,7 +60,7 @@
       background-position: center center;
       background-repeat: no-repeat;
       background-size: contain;
-      background-image: url("../../assets/medical-facility/benhvienhungviet.png");
+      // background-image: url("../../assets/medical-facility/benhvienhungviet.png");
     }
   }
   &.section-outstanding-doctor {
@@ -116,9 +116,11 @@
     .img-customize {
       cursor: pointer;
       padding: 0 5px;
+
       .customize-border {
         padding: 20px;
         border: 1px solid rgb(226, 221, 221);
+        max-height: 190px;
       }
       .outer-bg {
         display: flex;
@@ -127,7 +129,12 @@
       }
 
       .text-img {
-        font-size: 20px;
+        font-size: 15px;
+        text-align: center;
+        margin: 10px 0;
+        &:hover {
+          color: rgb(29, 100, 182);
+        }
       }
     }
   }

@@ -9,7 +9,7 @@ const initialState = {
   topDoctors: [],
   allDoctors: [],
   allScheduleTime: [],
-
+  allClinics: [],
   allRequiredDoctorInfo: [],
   allSpecialties: [],
 };
@@ -116,6 +116,16 @@ const adminReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_ALL_SPECIALTY_FAILDED:
       state.allSpecialties = [];
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_ALL_CLINIC_SUCCESS:
+      state.allClinics = action.dataCL;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_ALL_CLINIC_FAILDED:
+      state.allClinics = [];
       return {
         ...state,
       };

@@ -18,7 +18,16 @@ class DoctorExtraInfo extends Component {
       extraInfo: {},
     };
   }
-  async componentDidMount() {}
+  async componentDidMount() {
+    if (this.props.doctorIdFromParent) {
+      let res = await getExtraInfoDoctorById(this.props.doctorIdFromParent);
+      if (res && res.errCode === 0) {
+        this.setState({
+          extraInfo: res.data,
+        });
+      }
+    }
+  }
 
   //chuyển first letter thành in hoa
 

@@ -27,7 +27,10 @@ import { FormattedMessage } from "react-intl";
 class HomeFooter extends Component {
   render() {
     return (
-      <div className="home-footer">
+      <div
+        className="home-footer"
+        style={{ height: "100px", background: "#64b9e5" }}
+      >
         <p>
           &copy; 2023 Đào Văn Thắng. More information.
           <a

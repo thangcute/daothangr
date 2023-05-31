@@ -71,6 +71,42 @@ const deleteSpecialtyService = (id) => {
   return axios.delete("/api/delete-specialty", { data: { id: id } });
 };
 
+const getAllDetailSpecialtyById = (data) => {
+  //template string
+  return axios.get(
+    `/api/get-detail-specialty-by-id?id=${data.id}&location=${data.location}`
+  );
+};
+
+const createNewClinic = (data) => {
+  return axios.post("/api/create-new-clinic", data);
+};
+const getAllClinics = (inputId) => {
+  //template string
+  return axios.get(`/api/get-all-clinic?id=${inputId}`);
+};
+const editClinicService = (data) => {
+  return axios.put("/api/edit-clinic", data);
+};
+const deleteClinicService = (id) => {
+  return axios.delete("/api/delete-clinic", { data: { id: id } });
+};
+const getAllDetailClinicById = (data) => {
+  //template string
+  return axios.get(`/api/get-detail-clinic-by-id?id=${data.id}`);
+};
+const getAllPatientForDoctor = (data) => {
+  //template string
+  return axios.get(
+    `/api/get-list-patient-for-doctor?doctorId=${data.doctorId}&date=${data.date}`
+  );
+};
+const postSendRemedy = (data) => {
+  return axios.post("/api/send-remedy", data);
+};
+const findClinic = (name) => {
+  return axios.get(`/api/get-clinic-by-name?name=${name}`);
+};
 export {
   handleLoginApi,
   getAllUsers,
@@ -92,4 +128,13 @@ export {
   getAllSpecialtys,
   editSpecialtyService,
   deleteSpecialtyService,
+  getAllDetailSpecialtyById,
+  createNewClinic,
+  getAllClinics,
+  editClinicService,
+  deleteClinicService,
+  getAllDetailClinicById,
+  getAllPatientForDoctor,
+  postSendRemedy,
+  findClinic,
 };

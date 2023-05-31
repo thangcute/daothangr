@@ -11,6 +11,8 @@ import {
   saveDetailDoctorService,
   getAllSpecialtys,
   editSpecialtyService,
+  getAllClinics,
+  editClinicService,
 } from "../../services/userService";
 
 // export const fetchGenderStart = () => ({
@@ -303,6 +305,7 @@ export const getRequiredDoctorInfo = () => {
       let resPayment = await getAllCodeService("PAYMENT");
       let resProvince = await getAllCodeService("PROVINCE");
       let resSpecialty = await getAllSpecialtys("ALL");
+      let resClinic = await getAllClinics("ALL");
       if (
         resPrice &&
         resPrice.errCode === 0 &&
@@ -311,13 +314,16 @@ export const getRequiredDoctorInfo = () => {
         resProvince &&
         resProvince.errCode === 0 &&
         resSpecialty &&
-        resSpecialty.specialties.errCode === 0
+        resSpecialty.specialties.errCode === 0 &&
+        resClinic &&
+        resClinic.clinics.errCode === 0
       ) {
         let data = {
           resPrice: resPrice.data,
           resPayment: resPayment.data,
           resProvince: resProvince.data,
           resSpecialty: resSpecialty.specialties.data,
+          resClinic: resClinic.clinics.data,
         };
         dispatch(fetchRequiredDoctorInfoSuccess(data));
       } else {
@@ -383,6 +389,55 @@ export const UpdateSpecialty = (data) => {
       console.log(error);
       dispatch({
         type: actionTypes.EDIT_SPECIALTY_FAIDED,
+      });
+    }
+  };
+};
+
+export const fetchAllClinic = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllClinics("ALL");
+      console.log("check res: ", res.clinics.data);
+      if (res && res.clinics.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALL_CLINIC_SUCCESS,
+          dataCL: res.clinics.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALL_CLINIC_FAILDED,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: actionTypes.FETCH_ALL_CLINIC_FAILDED,
+      });
+    }
+  };
+};
+
+export const UpdateClinic = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await editClinicService(data);
+      if (res && res.errCode === 0) {
+        toast.success("save info clinic success!");
+        dispatch({
+          type: actionTypes.EDIT_CLINIC_SUCCESS,
+        });
+      } else {
+        toast.error("save info clinic error!");
+        dispatch({
+          type: actionTypes.EDIT_CLINIC_FAIDED,
+        });
+      }
+    } catch (error) {
+      toast.error("save info clinic error!");
+      console.log(error);
+      dispatch({
+        type: actionTypes.EDIT_CLINIC_FAIDED,
       });
     }
   };

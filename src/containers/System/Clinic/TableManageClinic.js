@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 // import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
-import "./TableManageSpecialty.scss";
+import "./TableManageClinic.scss";
 import * as actions from "../../../store/actions";
-import { deleteSpecialtyService } from "../../../services/userService";
+import { deleteClinicService } from "../../../services/userService";
 
 import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
@@ -22,22 +22,22 @@ const mdParser = new MarkdownIt(/* Markdown-it options */);
 //   console.log("handleEditorChange", html, text);
 // }
 
-class TableManageSpecialty extends Component {
+class TableManageClinic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      specialtyRedux: [],
+      clinicRedux: [],
     };
   }
 
   componentDidMount() {
-    this.props.fetchSpecialtyRedux();
+    this.props.fetchClinicRedux();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.listSpecialty !== this.props.listSpecialty) {
+    if (prevProps.listClinic !== this.props.listClinic) {
       this.setState({
-        specialtyRedux: this.props.listSpecialty,
+        clinicRedux: this.props.listClinic,
       });
     }
   }
@@ -50,20 +50,20 @@ class TableManageSpecialty extends Component {
   //     this.props.handleEditUserFromParentKey(user);
   //   };
 
-  handleEditSpecialty = (specialty) => {
-    this.props.handleEditSpecialtyFromParent(specialty);
+  handleEditClinic = (clinic) => {
+    this.props.handleEditClinicFromParent(clinic);
   };
-  handleDeleteSpecialty = async (specialty) => {
-    let res = await deleteSpecialtyService(specialty.id);
+  handleDeleteClinic = async (clinic) => {
+    let res = await deleteClinicService(clinic.id);
     if (res && res.errCode === 0) {
       toast.success("xóa thành công!");
-      this.props.fetchSpecialtyRedux();
+      this.props.fetchClinicRedux();
     } else {
       toast.error("Xóa thất bại!");
     }
   };
   render() {
-    let arrSpecialty = this.state.specialtyRedux;
+    let arrClinic = this.state.clinicRedux;
     return (
       <React.Fragment>
         {/* <MdEditor
@@ -71,16 +71,16 @@ class TableManageSpecialty extends Component {
           renderHTML={(text) => mdParser.render(text)}
           onChange={handleEditorChange}
         /> */}
-        <table id="TableManageSpecialty">
+        <table id="TableManageClinic">
           <tbody>
             <tr>
               <th className="col-8">Name</th>
               <th className="col-3">Ảnh</th>
               <th className="col-1">Thao tác</th>
             </tr>
-            {arrSpecialty &&
-              arrSpecialty.length > 0 &&
-              arrSpecialty.map((item, index) => {
+            {arrClinic &&
+              arrClinic.length > 0 &&
+              arrClinic.map((item, index) => {
                 return (
                   <tr key={index}>
                     <td>{item.name}</td>
@@ -94,13 +94,13 @@ class TableManageSpecialty extends Component {
                     <td>
                       <button
                         className="btn-edit"
-                        onClick={() => this.handleEditSpecialty(item)}
+                        onClick={() => this.handleEditClinic(item)}
                       >
                         <i className="fas fa-pencil-alt"></i>
                       </button>
                       <button
                         className="btn-delete"
-                        onClick={() => this.handleDeleteSpecialty(item)}
+                        onClick={() => this.handleDeleteClinic(item)}
                       >
                         <i className="fas fa-trash"></i>
                       </button>
@@ -117,17 +117,14 @@ class TableManageSpecialty extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    listSpecialty: state.admin.allSpecialties,
+    listClinic: state.admin.allClinics,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchSpecialtyRedux: () => dispatch(actions.fetchAllSpecialty()),
+    fetchClinicRedux: () => dispatch(actions.fetchAllClinic()),
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TableManageSpecialty);
+export default connect(mapStateToProps, mapDispatchToProps)(TableManageClinic);

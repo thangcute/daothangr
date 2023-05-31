@@ -30,7 +30,7 @@ class About extends Component {
       <div className="share">
         <div className="section-share section-about">
           <div className="section-about-header">
-            Truyền thông nói gì về Newline
+            <FormattedMessage id="homepage.speakingnewline" />
           </div>
           <div className="section-about-content">
             <div className="content-left">
@@ -44,10 +44,7 @@ class About extends Component {
             </div>
             <div className="content-right">
               <p>
-                Trong video này, chúng ta sẽ hoàn tất việc design giao diện theo
-                trang bookingcare.vn. Chúng ta sẽ hoàn thiện những phần đang còn
-                dang dở, để từ video tiếp theo, chúng ta sẽ bắt đầu làm về
-                backend và react để tạo dữ liệu thật cho trang home design này.
+                <FormattedMessage id="homepage.text" />
               </p>
             </div>
           </div>

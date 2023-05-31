@@ -7,6 +7,12 @@ import { changeLanguageApp } from "../../store/actions";
 import { withRouter } from "react-router";
 
 class HomeHeader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+    };
+  }
   changeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
     //fire redux event: actions
@@ -14,6 +20,18 @@ class HomeHeader extends Component {
   returnHome = () => {
     if (this.props.history) {
       this.props.history.push("/home");
+    }
+  };
+  handleOnchange = (event) => {
+    if (event.target.value) {
+      this.setState({
+        name: event.target.value,
+      });
+    }
+  };
+  searchClinic = () => {
+    if (this.props.history) {
+      this.props.history.push(`/search-clinic/${this.state.name}`);
     }
   };
   render() {
@@ -113,8 +131,16 @@ class HomeHeader extends Component {
                 <FormattedMessage id="banner.title2" />
               </div>
               <div className="search">
-                <i className="fas fa-search"></i>
-                <input type="text" placeholder="Tìm phòng khám" />
+                <i
+                  style={{ cursor: "pointer" }}
+                  className="fas fa-search"
+                  onClick={() => this.searchClinic()}
+                ></i>
+                <input
+                  type="text"
+                  placeholder="Tìm phòng khám"
+                  onChange={(event) => this.handleOnchange(event)}
+                />
               </div>
             </div>
             <div className="content-down">

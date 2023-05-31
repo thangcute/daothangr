@@ -36,7 +36,8 @@
       "manage-handbook": "Quản lí cẩm nang"
     },
     "doctor": {
-      "manage-schedule": "Quản lí kế hoạch khám bệnh"
+      "manage-schedule": "Quản lí kế hoạch khám bệnh",
+      "manage-patient": "Quản lí bệnh nhân khám bệnh"
     }
   },
   "manage-user": {
@@ -52,12 +53,17 @@
     "roleid": "Vai trò",
     "image": "Ảnh đại diện",
     "save": "Thêm mới",
-    "update": "Sửa user"
+    "update": "Sửa user",
+    "title": "User Redux 'đào văn thắng IT'"
   },
   "homepage": {
     "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
     "more-infor": "Xem thêm",
-    "specialty-popular": "Chuyên khoa phổ biến"
+    "specialty-popular": "Chuyên khoa phổ biến",
+    "speakingnewline": "Truyền thông nói gì về newline",
+    "text": "Trong video này, chúng ta sẽ hoàn tất việc design giao diện theo trang bookingcare.vn. Chúng ta sẽ hoàn thiện những phần đang còn dang dở, để từ video tiếp theo, chúng ta sẽ bắt đầu làm về backend và react để tạo dữ liệu thật cho trang home design này.",
+    "handbook": "Một số hình ảnh tượng trưng",
+    "clinic": "Cơ sở y tế nổi bật"
   },
   "manage-schedule": {
     "title": "Quản lí kế hoạch khám bệnh của bác sĩ",

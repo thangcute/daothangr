@@ -31,42 +31,59 @@ class HandBook extends Component {
       <div className="section-share section-handbook">
         <div className="section-container">
           <div className="section-header">
-            <span>Cẩm nang</span>
-            <button>Xem Thêm</button>
+            <span>
+              <FormattedMessage id="homepage.handbook" />
+            </span>
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>
               <div className="img-customize">
                 <div className="bg-image"></div>
-                <div className="text-img">Cơ xương khớp 1</div>
+                <div className="text-img">
+                  <FormattedMessage id="homepage.handbook" />
+                </div>
               </div>
               <div className="img-customize">
                 <div className="bg-image"></div>
-                <div className="text-img">Cơ xương khớp 2</div>
+                <div className="text-img">
+                  <FormattedMessage id="homepage.handbook" />
+                </div>
               </div>
               <div className="img-customize">
                 <div className="bg-image"></div>
-                <div className="text-img">Cơ xương khớp 3</div>
+                <div className="text-img">
+                  <FormattedMessage id="homepage.handbook" />
+                </div>
               </div>
               <div className="img-customize">
                 <div className="bg-image"></div>
-                <div className="text-img">Cơ xương khớp 4</div>
+                <div className="text-img">
+                  <FormattedMessage id="homepage.handbook" />
+                </div>
               </div>
               <div className="img-customize">
                 <div className="bg-image"></div>
-                <div className="text-img">Cơ xương khớp 5</div>
+                <div className="text-img">
+                  <FormattedMessage id="homepage.handbook" />
+                </div>
               </div>
               <div className="img-customize">
                 <div className="bg-image"></div>
-                <div className="text-img">Cơ xương khớp 6</div>
+                <div className="text-img">
+                  <FormattedMessage id="homepage.handbook" />
+                </div>
               </div>
               <div className="img-customize">
                 <div className="bg-image"></div>
-                <div className="text-img">Cơ xương khớp 7</div>
+                <div className="text-img">
+                  <FormattedMessage id="homepage.handbook" />
+                </div>
               </div>
               <div className="img-customize">
                 <div className="bg-image"></div>
-                <div className="text-img">Cơ xương khớp 8</div>
+                <div className="text-img">
+                  <FormattedMessage id="homepage.handbook" />
+                </div>
               </div>
             </Slider>
           </div>

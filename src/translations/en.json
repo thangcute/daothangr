@@ -36,7 +36,8 @@
       "manage-handbook": "Manage handbooks"
     },
     "doctor": {
-      "manage-schedule": "Manage Doctor's schedule"
+      "manage-schedule": "Manage Doctor's schedule",
+      "manage-patient": "Manage Doctor's patient"
     }
   },
   "manage-user": {
@@ -52,12 +53,17 @@
     "roleid": "Role",
     "image": "Avatar",
     "save": "Save",
-    "update": "Update"
+    "update": "Update",
+    "title": "User Redux 'diploma wins IT'"
   },
   "homepage": {
     "outstanding-doctor": "Last week's featured doctor",
     "more-infor": "More info",
-    "specialty-popular": "Popular specialties"
+    "specialty-popular": "Popular specialties",
+    "speakingnewline": "What media say about newline",
+    "text": "In this video, we will complete the interface design according to bookingcare.vn page. We will complete the unfinished parts, so that from the next video, we will start working on the backend and react to create real data for this home design page.",
+    "handbook": "Some symbolic images",
+    "clinic": "Outstanding medical facility"
   },
   "manage-schedule": {
     "title": "Manage doctor's examination plan",

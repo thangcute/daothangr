@@ -22,7 +22,9 @@ class Specialty extends Component {
     }
   }
   handleviewdetailSpecialty = (item) => {
-    this.props.history.push(`/detail-specialty/${item.id}`);
+    if (this.props.history) {
+      this.props.history.push(`/detail-specialty/${item.id}`);
+    }
   };
   render() {
     let { dataSpecialty } = this.state;
