@@ -81,7 +81,9 @@ class DetailClinic extends Component {
                   backgroundRepeat: "no-repeat",
                 }}
               ></div>
-              <div>{dataDetailClinic.name}</div>
+              <h1 style={{ fontWeight: "600", textAlign: "center" }}>
+                {dataDetailClinic.name}
+              </h1>
               <br />
               <div
                 dangerouslySetInnerHTML={{

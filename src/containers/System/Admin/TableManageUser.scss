@@ -33,6 +33,12 @@
     display: inline-block;
     background-color: #ccc;
     padding: 3px 10px;
+    .p {
+      color: black;
+    }
+    .active {
+      color: red;
+    }
     a {
       border-left: 0.5px solid grey;
       border-right: 0.5px solid grey;

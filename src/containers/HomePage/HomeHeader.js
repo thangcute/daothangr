@@ -5,6 +5,7 @@ import "./HomeHeader.scss";
 import { LANGUAGES } from "../../utils/constant";
 import { changeLanguageApp } from "../../store/actions";
 import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
 
 class HomeHeader extends Component {
   constructor(props) {
@@ -41,14 +42,13 @@ class HomeHeader extends Component {
         <div className="home-header-container">
           <div className="home-header-content">
             <div className="left-content">
-              <i className="fas fa-bars"></i>
               <div
                 className="header-logo"
                 onClick={() => this.returnHome()}
               ></div>
             </div>
             <div className="center-content">
-              <div className="child-content">
+              {/* <div className="child-content">
                 <div>
                   <b>
                     <FormattedMessage id="home-header.speciality" />
@@ -87,7 +87,7 @@ class HomeHeader extends Component {
                 <div className="sub-title">
                   <FormattedMessage id="home-header.general-examination" />
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="right-content">
               <div className="support">
@@ -150,7 +150,9 @@ class HomeHeader extends Component {
                     <i className="fas fa-hospital"></i>
                   </div>
                   <div className="text-child">
-                    <FormattedMessage id="banner.child1" />
+                    <Link to={`/all-specialty`}>
+                      <FormattedMessage id="banner.child1" />
+                    </Link>
                   </div>
                 </div>
                 <div className="option-child">

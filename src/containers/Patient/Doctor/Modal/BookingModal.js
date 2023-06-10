@@ -161,141 +161,139 @@ class BookingModal extends Component {
     }
 
     return (
-      <>
-        <LoadingOverlay
-          active={this.state.isShowLoading}
-          spinner
-          text="Loading..."
+      <LoadingOverlay
+        active={this.state.isShowLoading}
+        spinner
+        text="Loading..."
+      >
+        <Modal
+          isOpen={isOpenModal}
+          className={"booking-modal-container"}
+          size="lg"
+          centered
+          // backdrop={true}
         >
-          <Modal
-            isOpen={isOpenModal}
-            className={"booking-modal-container"}
-            size="lg"
-            centered
-            // backdrop={true}
-          >
-            <div className="booking-modal-content">
-              <div className="booking-modal-header">
-                <span className="left">
-                  <FormattedMessage id="patient.booking-modal.title" />
-                </span>
-                <span className="right" onClick={closeBookingModal}>
-                  <i className="fas fa-times"></i>
-                </span>
+          <div className="booking-modal-content">
+            <div className="booking-modal-header">
+              <span className="left">
+                <FormattedMessage id="patient.booking-modal.title" />
+              </span>
+              <span className="right" onClick={closeBookingModal}>
+                <i className="fas fa-times"></i>
+              </span>
+            </div>
+            <div className="booking-modal-body">
+              {/* {JSON.stringify(dataTime)} */}
+              <div className="doctor-info">
+                <ProfileDoctor
+                  doctorId={doctorId}
+                  isShowDescriptionDoctor={false}
+                  dataTime={dataTime}
+                  isShowPrice={true}
+                  isShowLinkDetail={false}
+                />
               </div>
-              <div className="booking-modal-body">
-                {/* {JSON.stringify(dataTime)} */}
-                <div className="doctor-info">
-                  <ProfileDoctor
-                    doctorId={doctorId}
-                    isShowDescriptionDoctor={false}
-                    dataTime={dataTime}
-                    isShowPrice={true}
-                    isShowLinkDetail={false}
+
+              <div className="row">
+                <div className="col-6 form-group">
+                  <label>
+                    <FormattedMessage id="patient.booking-modal.fullname" />
+                  </label>
+                  <input
+                    className="form-control"
+                    value={this.state.fullName}
+                    onChange={(event) =>
+                      this.handleOnchangeInput(event, "fullName")
+                    }
                   />
                 </div>
-
-                <div className="row">
-                  <div className="col-6 form-group">
-                    <label>
-                      <FormattedMessage id="patient.booking-modal.fullname" />
-                    </label>
-                    <input
-                      className="form-control"
-                      value={this.state.fullName}
-                      onChange={(event) =>
-                        this.handleOnchangeInput(event, "fullName")
-                      }
-                    />
-                  </div>
-                  <div className="col-6 form-group">
-                    <label>
-                      <FormattedMessage id="patient.booking-modal.phone" />
-                    </label>
-                    <input
-                      className="form-control"
-                      value={this.state.phoneNumber}
-                      onChange={(event) =>
-                        this.handleOnchangeInput(event, "phoneNumber")
-                      }
-                    />
-                  </div>
-                  <div className="col-6 form-group">
-                    <label>
-                      <FormattedMessage id="patient.booking-modal.email" />
-                    </label>
-                    <input
-                      className="form-control"
-                      value={this.state.email}
-                      onChange={(event) =>
-                        this.handleOnchangeInput(event, "email")
-                      }
-                    />
-                  </div>
-                  <div className="col-6 form-group">
-                    <label>
-                      <FormattedMessage id="patient.booking-modal.address" />
-                    </label>
-                    <input
-                      className="form-control"
-                      value={this.state.address}
-                      onChange={(event) =>
-                        this.handleOnchangeInput(event, "address")
-                      }
-                    />
-                  </div>
-                  <div className="col-12 form-group">
-                    <label>
-                      <FormattedMessage id="patient.booking-modal.reason" />
-                    </label>
-                    <input
-                      className="form-control"
-                      value={this.state.reason}
-                      onChange={(event) =>
-                        this.handleOnchangeInput(event, "reason")
-                      }
-                    />
-                  </div>
-                  <div className="col-6 form-group">
-                    <label>
-                      <FormattedMessage id="patient.booking-modal.birthday" />
-                    </label>
-                    <DatePicker
-                      onChange={this.handleChangeDatePicker}
-                      className="form-control"
-                      value={this.state.birthday}
-                    />
-                  </div>
-                  <div className="col-6 form-group">
-                    <label>
-                      <FormattedMessage id="patient.booking-modal.gender" />
-                    </label>
-                    <Select
-                      value={this.state.selectedGender}
-                      onChange={this.handleChange}
-                      options={this.state.genders}
-                    />
-                  </div>
+                <div className="col-6 form-group">
+                  <label>
+                    <FormattedMessage id="patient.booking-modal.phone" />
+                  </label>
+                  <input
+                    className="form-control"
+                    value={this.state.phoneNumber}
+                    onChange={(event) =>
+                      this.handleOnchangeInput(event, "phoneNumber")
+                    }
+                  />
+                </div>
+                <div className="col-6 form-group">
+                  <label>
+                    <FormattedMessage id="patient.booking-modal.email" />
+                  </label>
+                  <input
+                    className="form-control"
+                    value={this.state.email}
+                    onChange={(event) =>
+                      this.handleOnchangeInput(event, "email")
+                    }
+                  />
+                </div>
+                <div className="col-6 form-group">
+                  <label>
+                    <FormattedMessage id="patient.booking-modal.address" />
+                  </label>
+                  <input
+                    className="form-control"
+                    value={this.state.address}
+                    onChange={(event) =>
+                      this.handleOnchangeInput(event, "address")
+                    }
+                  />
+                </div>
+                <div className="col-12 form-group">
+                  <label>
+                    <FormattedMessage id="patient.booking-modal.reason" />
+                  </label>
+                  <input
+                    className="form-control"
+                    value={this.state.reason}
+                    onChange={(event) =>
+                      this.handleOnchangeInput(event, "reason")
+                    }
+                  />
+                </div>
+                <div className="col-6 form-group">
+                  <label>
+                    <FormattedMessage id="patient.booking-modal.birthday" />
+                  </label>
+                  <DatePicker
+                    onChange={this.handleChangeDatePicker}
+                    className="form-control"
+                    value={this.state.birthday}
+                  />
+                </div>
+                <div className="col-6 form-group">
+                  <label>
+                    <FormattedMessage id="patient.booking-modal.gender" />
+                  </label>
+                  <Select
+                    value={this.state.selectedGender}
+                    onChange={this.handleChange}
+                    options={this.state.genders}
+                  />
                 </div>
               </div>
-              <div className="booking-modal-footer">
-                <button
-                  className="btn-booking-confirm"
-                  onClick={() => this.handleConfirmBooking()}
-                >
-                  <FormattedMessage id="patient.booking-modal.confirm" />
-                </button>
-                <button
-                  className="btn-booking-cancel"
-                  onClick={closeBookingModal}
-                >
-                  <FormattedMessage id="patient.booking-modal.cancel" />
-                </button>
-              </div>
             </div>
-          </Modal>
-        </LoadingOverlay>
-      </>
+            <div className="booking-modal-footer">
+              <button
+                className="btn-booking-confirm"
+                onClick={() => this.handleConfirmBooking()}
+              >
+                <FormattedMessage id="patient.booking-modal.confirm" />
+              </button>
+              <button
+                className="btn-booking-cancel"
+                onClick={closeBookingModal}
+              >
+                <FormattedMessage id="patient.booking-modal.cancel" />
+              </button>
+            </div>
+          </div>
+        </Modal>
+      </LoadingOverlay>
     );
   }
 }

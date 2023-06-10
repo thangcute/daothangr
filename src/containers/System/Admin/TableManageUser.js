@@ -10,6 +10,7 @@ import MdEditor from "react-markdown-editor-lite";
 // import style manually
 import "react-markdown-editor-lite/lib/index.css";
 import $ from "jquery";
+import { Link } from "react-router-dom";
 
 // Register plugins if required
 // MdEditor.use(YOUR_PLUGINS_HERE);
@@ -68,6 +69,8 @@ class TableManageUser extends Component {
     this.setState({
       dataPhanTrang: tmpTheoTrang,
     });
+    $(".p").removeClass("active");
+    $("#" + j).addClass("active");
   };
 
   render() {
@@ -123,11 +126,32 @@ class TableManageUser extends Component {
             {(() => {
               let a = [];
               for (let j = 0; j < num; j++) {
-                a.push(
-                  <a key={j} onClick={() => this.handleClickNum(j + 1, this)}>
-                    {j + 1}
-                  </a>
-                );
+                switch (j) {
+                  case 0:
+                    a.push(
+                      <Link
+                        key={j}
+                        onClick={() => this.handleClickNum(j + 1)}
+                        id={j + 1}
+                        className="p active"
+                      >
+                        {j + 1}
+                      </Link>
+                    );
+                    break;
+                  default:
+                    a.push(
+                      <Link
+                        key={j}
+                        onClick={() => this.handleClickNum(j + 1)}
+                        id={j + 1}
+                        className="p"
+                      >
+                        {j + 1}
+                      </Link>
+                    );
+                    break;
+                }
               }
               return a;
             })()}
